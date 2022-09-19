@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+priority_queue<int> pq;
+vector<int> v;
+void pushpq(vector<int> v){
+    for(int i=0;i<v.size();i++){
+     if(v[i]>0){
+         pq.push(v[i]);
+     }
+ }
+}
+int main() {
+ // your code goes here
+ int n;
+ cin>>n;
+ int t;
+ vector<int> v;
+ for(int i=0;i<n;i++){
+     cin>>t;
+     v.push_back(t);
+ }
+ vector<int> vec;
+ int cnt=0;
+ pushpq(v);
+ do{
+ int len=pq.size();
+ for(int i=0;i<len;i++){
+     if(i==0){
+         if((pq.top()-4)>=0){
+             vec.push_back(pq.top()-4);
+         }
+         else{
+             vec.push_back(0);
+         }
+     }
+     else{
+         if((pq.top()-1)>=0){
+             vec.push_back(pq.top()-1);
+         }
+         else{
+             vec.push_back(0);
+         }
+     }
+     pq.pop();
+ }
+ pushpq(vec);
+ vec.clear();
+ cnt++;
+ }while(pq.size()!=0);
+ cout<<cnt;
+ return 0;
+}
